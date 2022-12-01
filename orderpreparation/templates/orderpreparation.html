@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block page-title %}Order Preparation{% endblock %}
+
+{% block content %}
+
+    <h1>ORDER SLIP</h1>
+
+    {% for order in order_list %}
+    <p>
+        Customer: 
+        {{ order.customer_name }}
+    </p>
+    <p>
+        Date: 
+        {{ order.order_date }}
+    </p>
+    {% endfor %}
+
+    {% for milkshake in milkshake_list %}
+    <p>
+    {{ milkshake.recipe}}
+    </p>
+
+    {% endfor %}
+
+    {% for custom in customizations_list %}
+    <p> 
+        Customizations
+        {{ customization.quantity }}
+        {{ customization.ingredient_name }}
+    </p>
+    {% endfor %}
+
+{% endblock %}

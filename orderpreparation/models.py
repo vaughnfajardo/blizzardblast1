@@ -17,7 +17,7 @@ class Customer(models.Model):
         db_table = 'customer'
 
     def __str__(self):
-        return str(self.customer_id)
+        return str(self.customer_name)
 
 
 
@@ -43,6 +43,9 @@ class Employee(models.Model):
     class Meta:
         managed = False
         db_table = 'employee'
+
+    def __str__(self):
+        return str(self.employee_name)
         
 
 

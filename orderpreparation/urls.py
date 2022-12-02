@@ -5,5 +5,5 @@ app_name = 'orderpreparation'
 urlpatterns = [
     path("orderpreparation/", HomePageView.as_view(), name='index'),
     path("refillingredient/", refillingredient, name = 'refillingredient'),
-    path("orderpreparation/<int:customer_id>", orderslip, name='orderslip'),
+    path("orderpreparation/<int:customer_id>/", orderslip, name='orderslip'),
 ]

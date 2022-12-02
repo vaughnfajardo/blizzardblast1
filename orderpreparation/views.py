@@ -12,15 +12,17 @@ def refillingredient(request):
     return render(request, "refillingredient.html", {'ingredient': refillingredient_list})
 
 def orderslip(request, customer_id):
-    customer_list = Customer.objects.get(customer_id=customer_id)
-    order_list = Orders.objects.filter(customer_id=customer_list.customer_id)
+    customer = Customer.objects.get(customer_id=customer_id)
+    order = Orders.objects.get(customer_id=customer.customer_id)
+    shake = Milkshake.objects.all().filter(tx_num = order.tx_num)
 
     datadict = {
-        "customer": customer_list,
-        "order" : order_list,
+        "customer": customer,
+        "order" : order,
+        "shake": shake
     }
     
-    return render(request, 'orderslip.html', datadict)
+    return render(request, "orderslip.html", datadict)
 
 class HomePageView(View):
     def get(self, request):

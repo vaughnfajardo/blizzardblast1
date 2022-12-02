@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block page-title %}Order Slip{% endblock %}
+
+{% block content %}
+
+    <h1>ORDER SLIP</h1>
+
+    {% for order in order_list %}
+    <p>
+        Customer: 
+        {{ order.customer_name }}
+    </p>
+    <p>
+        Date: 
+        {{ order.order_date }}
+    </p>
+    {% endfor %}
+
+{% endblock %}

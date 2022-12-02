@@ -1,8 +1,9 @@
 from django.urls import path
-from . import views
+from .views import *
 
 app_name = 'orderpreparation'
 urlpatterns = [
-    path("", views.HomePageView.as_view(), name='index'),
-    path("orderpreparation/<int:customer_id>", views.orderpreparation, name='orderpreparation'),
+    path("orderpreparation/", HomePageView.as_view(), name='index'),
+    path("refillingredient/", refillingredient, name = 'refillingredient'),
+    path("orderpreparation/<int:customer_id>", orderslip, name='orderslip'),
 ]

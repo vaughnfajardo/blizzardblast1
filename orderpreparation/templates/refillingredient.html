@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block page-title %}Ingredient Refill{% endblock %}
+
+{% block content %}
+<div style = "position: relative; left:80px; top:30px;">
+    <h1>INGREDIENT REFILLS</h1>
+</div>
+<div style = "position:relative; left:80px; top:35px;">
+    <table id = 'ingredient'>
+        {% for in in ingredient %}
+        <tr>
+            <td>{{ in.ingredient_name }}</td>
+            <td>{{ in.category }}</td>
+            <td>{{ in.quantity_on_hand }}</td>
+            <td>{{ in.price_per_serving }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}

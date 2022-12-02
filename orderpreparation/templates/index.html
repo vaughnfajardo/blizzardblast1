@@ -1,0 +1,25 @@
+{% extends "homepage/base.html" %}
+
+{% block page-title %}Order Preparation Per Customer{% endblock %}
+
+{% block content %}
+<div style = "position: relative; left:80px; top:30px;">
+    <h1>CUSTOMER ORDERS</h1>
+</div>
+<div style = "position:relative; left:80px; top:35px;">
+    <p>List of Orders: </p>
+    <p>
+        {% if customer %}
+        <ol>
+            {% for customer in customer %}
+                <li><a href="/orderpreparation/{{ customer.customer_id }}/">
+                {{ customer.customer_name }}
+                </a></li>
+            {% endfor %}
+        </ol>
+    </p>
+    {% else %}
+        <p>No users are available.</p>
+    {% endif %}
+</div>
+{% endblock %}

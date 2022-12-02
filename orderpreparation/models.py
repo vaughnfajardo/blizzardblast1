@@ -9,22 +9,23 @@ from django.db import models
 
 
 class Customer(models.Model):
-    customer_name = models.CharField(primary_key=True, max_length=25)
+    customer_id = models.IntegerField(primary_key=True)
+    customer_name = models.CharField(max_length=25)
 
     class Meta:
         managed = False
         db_table = 'customer'
 
     def __str__(self):
-        return str(self.customer_name)
+        return str(self.customer_id)
 
 
 
 class Customization(models.Model):
-    shake = models.OneToOneField('Milkshake', models.DO_NOTHING, primary_key=True)
+    custom_id = models.IntegerField(primary_key=True)
+    shake = models.ForeignKey('Milkshake', models.DO_NOTHING)
     ingredient_name = models.ForeignKey('Ingredient', models.DO_NOTHING, db_column='ingredient_name', blank=True, null=True)
     quantity = models.IntegerField(blank=True, null=True)
-    tx_num = models.ForeignKey('Orders', models.DO_NOTHING, db_column = 'tx_num', blank=True, null=True)
 
     class Meta:
         managed = False
@@ -83,27 +84,10 @@ class Manager(models.Model):
         return str(self.employee)
 
 
-
-class Milkshake(models.Model):
-    shake_id = models.IntegerField(primary_key=True)
-    recipe = models.ForeignKey('Recipe', models.DO_NOTHING, blank=True, null=True)
-    order = models.ForeignKey('Orders', models.DO_NOTHING, db_column='order', blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'milkshake'
-
-    def __str__(self):
-        return str(self.recipe)
-
-
-
-
-
 class Orders(models.Model):
-    txn_number = models.IntegerField(primary_key=True)
+    tx_num = models.IntegerField(primary_key=True)
     order_date = models.DateField(blank=True, null=True)
-    customer_name = models.ForeignKey(Customer, models.DO_NOTHING, db_column='customer_name', blank=True, null=True)
+    customer_id = models.ForeignKey(Customer, models.DO_NOTHING, db_column='customer_id', blank=True, null=True)
 
 
     class Meta:
@@ -111,8 +95,7 @@ class Orders(models.Model):
         db_table = 'orders'
 
     def __str__(self):
-        return str(self.txn_number)
-
+        return str(self.tx_num)
 
 class Recipe(models.Model):
     recipe_id = models.IntegerField(primary_key=True)
@@ -131,6 +114,20 @@ class Recipe(models.Model):
 
     def __str__(self):
         return f'{str(self.sizes)} {str(self.recipe_name)}'
+
+
+class Milkshake(models.Model):
+    shake_id = models.IntegerField(primary_key=True)
+    recipe = models.ForeignKey(Recipe, models.DO_NOTHING, blank=True, null=True)
+    tx_num = models.ForeignKey('Orders', models.DO_NOTHING, db_column = 'tx_num', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'milkshake'
+
+    def __str__(self):
+        return f'{str(self.recipe)} {str(self.tx_num)}'
+
 
 
 

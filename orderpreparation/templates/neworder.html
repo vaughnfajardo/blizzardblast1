@@ -1,13 +1,13 @@
 {% extends "base.html" %}
 
-{% block page-title %}New Customer{% endblock %}
+{% block page-title %}New Order{% endblock %}
 
 {% block content %}
-<h1> New Customer </h1>
+<h1> New Order </h1>
 <hr>
-<form method="POST" action="{% url 'orderpreparation:addcustomer' %}" enctype="multipart/form-data">
+<form method="POST" action="" enctype="multipart/form-data">
     {% csrf_token %}
-    {{ customer_form.as_p }}
+    {{ order_form.as_p }}
   <button class="button" type="submit">Submit</button>
   </form>
   <button onclick="location.href = '../orderpreparation'">Return to Index</button>

@@ -9,7 +9,7 @@ from django.db import models
 
 
 class Customer(models.Model):
-    customer_id = models.IntegerField(primary_key=True)
+    customer_id = models.AutoField(primary_key=True)
     customer_name = models.CharField(max_length=25)
 
     class Meta:
@@ -22,7 +22,7 @@ class Customer(models.Model):
 
 
 class Customization(models.Model):
-    custom_id = models.IntegerField(primary_key=True)
+    custom_id = models.AutoField(primary_key=True)
     shake = models.ForeignKey('Milkshake', models.DO_NOTHING)
     ingredient_name = models.ForeignKey('Ingredient', models.DO_NOTHING, db_column='ingredient_name', blank=True, null=True)
     quantity = models.IntegerField(blank=True, null=True)
@@ -37,7 +37,7 @@ class Customization(models.Model):
 
 
 class Employee(models.Model):
-    employee_id = models.IntegerField(primary_key=True)
+    employee_id = models.AutoField(primary_key=True)
     employee_name = models.CharField(max_length=25, blank=True, null=True)
 
     class Meta:
@@ -75,7 +75,7 @@ class Ingredient(models.Model):
 
 
 class Manager(models.Model):
-    manager_id = models.IntegerField(primary_key=True)
+    manager_id = models.AutoField(primary_key=True)
     employee = models.ForeignKey(Employee, models.DO_NOTHING, blank=True, null=True)
     manager_schedule = models.DateField(blank=True, null=True)
 
@@ -88,7 +88,7 @@ class Manager(models.Model):
 
 
 class Orders(models.Model):
-    tx_num = models.IntegerField(primary_key=True)
+    tx_num = models.AutoField(primary_key=True)
     order_date = models.DateField(blank=True, null=True)
     customer_id = models.ForeignKey(Customer, models.DO_NOTHING, db_column='customer_id', blank=True, null=True)
 
@@ -101,7 +101,7 @@ class Orders(models.Model):
         return str(self.tx_num)
 
 class Recipe(models.Model):
-    recipe_id = models.IntegerField(primary_key=True)
+    recipe_id = models.AutoField(primary_key=True)
     recipe_name = models.CharField(max_length=25)
     SIZES = [
         ('8', '8'),
@@ -120,7 +120,7 @@ class Recipe(models.Model):
 
 
 class Milkshake(models.Model):
-    shake_id = models.IntegerField(primary_key=True)
+    shake_id = models.AutoField(primary_key=True)
     recipe = models.ForeignKey(Recipe, models.DO_NOTHING, blank=True, null=True)
     tx_num = models.ForeignKey('Orders', models.DO_NOTHING, db_column = 'tx_num', blank=True, null=True)
 
@@ -135,7 +135,7 @@ class Milkshake(models.Model):
 
 
 class RecipeIngredient(models.Model):
-    in_recip = models.IntegerField(primary_key=True)
+    in_recip = models.AutoField(primary_key=True)
     recipe = models.ForeignKey(Recipe, models.DO_NOTHING, blank=True, null=True)
     ingredient = models.ForeignKey(Ingredient, models.DO_NOTHING, blank=True, null=True)
     quantity = models.IntegerField(blank=True, null=True)
@@ -149,7 +149,7 @@ class RecipeIngredient(models.Model):
 
 
 class Staff(models.Model):
-    staff_id = models.IntegerField(primary_key=True)
+    staff_id = models.AutoField(primary_key=True)
     employee = models.ForeignKey(Employee, models.DO_NOTHING, blank=True, null=True)
     staff_role = models.CharField(max_length=25, blank=True, null=True)
     role_schedule = models.DateField(blank=True, null=True)

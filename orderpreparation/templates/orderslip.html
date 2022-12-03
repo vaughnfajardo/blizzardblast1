@@ -13,7 +13,12 @@
     <p>
         Date: 
         {{ order.order_date }}
-        {{ shake.recipe }}
+        {% for s in shake %}
+            <li>
+                {{ s.recipe }}
+            </a>
+            </li>
+        {% endfor %}
     </p>
 
 {% endblock %}

@@ -23,7 +23,7 @@ class Customer(models.Model):
 
 class Customization(models.Model):
     custom_id = models.AutoField(primary_key=True)
-    shake = models.ForeignKey('Milkshake', models.DO_NOTHING)
+    shake_id = models.ForeignKey('Milkshake', models.DO_NOTHING, db_column = 'shake_id', blank=True, null=True)
     ingredient_name = models.ForeignKey('Ingredient', models.DO_NOTHING, db_column='ingredient_name', blank=True, null=True)
     quantity = models.IntegerField(blank=True, null=True)
 

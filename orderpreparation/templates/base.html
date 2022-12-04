@@ -5,8 +5,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>{% block page-title %}{% endblock %}</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&display=swap');
+
+      * {
+         box-sizing: border-box;
+         font-family: 'Poppins', Helvetica, sans-serif;
+      }
+      body {
+         margin: 2em;
+      }
+    </style>
 </head>
 <body>
+    {% block style %}
+    {% endblock %}
     {% block content %}
     {% endblock %}
 </body>

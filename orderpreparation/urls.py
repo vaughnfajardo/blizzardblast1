@@ -9,4 +9,8 @@ urlpatterns = [
     path('addcustomer/', newcustomer, name='addcustomer'),
     path('addorder/', neworder, name='addorder'),
     path('addshake/', newshake, name='addshake'),
+    path('addingredient/', newingredient, name='addingredient'),
+    path('addrecipe/', newrecipe, name='addrecipe'),
+    path('addrecipeingredient/', newrecipeingredient, name='addrecipeingredient'),
+    path('addcustomization/', newcustomization, name='addcustomization'),
 ]

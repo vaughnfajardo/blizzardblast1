@@ -21,22 +21,22 @@ class MilkshakeForm(ModelForm):
 
 #Forms to create new Recipes, Customizations, Ingredients, etc.
 
-class RecipeForm:
+class RecipeForm(ModelForm):
     class Meta:
         model = Recipe
         fields = '__all__'
 
-class RecipeIngredientForm:
+class RecipeIngredientForm(ModelForm):
      class Meta:
-        model = Recipe
+        model = RecipeIngredient
         fields = '__all__'
 
-class IngredientForm:
+class IngredientForm(ModelForm):
     class Meta:
         model = Ingredient
         fields = '__all__'
 
-class CustomizationForm:
+class CustomizationForm(ModelForm):
     class Meta:
         model = Customization
         fields = '__all__'

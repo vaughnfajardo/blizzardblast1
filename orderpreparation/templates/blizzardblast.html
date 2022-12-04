@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block style %}
+<style>
+   * {
+      background-color: aliceblue;
+   }
+   /* .orders { grid-area: orders }
+   .orderslip { grid-area: orderslip }
+   .container {
+      display: grid;
+      grid-template-areas: 'orders orderslip';
+   } */
+   .container {
+      display: flex;
+      /* float: left; */
+   }
+   button > * {
+      text-decoration: none;
+      padding: 0.5em;
+   }
+</style>
+{% endblock %}
+
+{% block page-title %}Order Slip{% endblock %}
+
+{% block content %}
+<div class="container">
+
+    <!-- list of all orders -->
+    <div class="orders">
+
+       <h1>ORDERS</h1>
+
+       <ul style="list-style-type: circle; line-height: 1.5em;">
+       {% for order in orders %}
+          <li><a href="/orders/{{ order.tx_num }}/">
+             Order {{ order.tx_num }}: {{ order.customer_id }}'s
+          </a></li>
+       {% endfor %}
+       </ul>
+
+       <button>
+          <a href="{% url 'orderpreparation:new-order' %}">New Order</a> 
+       </button>
+
+    </div>
+
+</div>
+{% endblock %}

@@ -1,19 +1,88 @@
 {% extends "base.html" %}
 
+{% block style %}
+<style>
+   * {
+      background-color: aliceblue;
+   }
+   /* .orders { grid-area: orders }
+   .orderslip { grid-area: orderslip }
+   .container {
+      display: grid;
+      grid-template-areas: 'orders orderslip';
+   } */
+   .container {
+      display: grid;
+      grid-template-columns: 25% 75%;
+   }
+   button > * {
+      text-decoration: none;
+      padding: 0.5em;
+   }
+   .shakecustoms {
+      list-style-type: "+  ";
+   }
+   .close-orderslip {
+      margin-right: 1em;
+   }
+</style>
+{% endblock %}
+
 {% block page-title %}Order Slip{% endblock %}
 
 {% block content %}
+<div class="container">
 
-    <h1>ORDER SLIP</h1>
-    <p>
-        Customer: 
-        {{ customer.customer_name }}
-        {{ customer.customer_id}}
-    </p>
-    <p>
-        Date: 
-        {{ order.order_date }}
-        {{ shake.recipe }}
-    </p>
+    <!-- list of all orders -->
+    <div class="orders">
 
+       <h1>ORDERS</h1>
+
+       <ul style="list-style-type: circle; line-height: 1.5em;">
+       {% for order in orders %}
+          <li><a href="/orders/{{ order.tx_num }}/">
+             Order {{ order.tx_num }}: {{ order.customer_id }}'s
+          </a></li>
+       {% endfor %}
+       </ul>
+
+       <button>
+          <a href="{% url 'orderpreparation:new-order' %}">New Order</a> 
+       </button>
+
+    </div>
+
+    <!-- customer's order -->
+   <div class="orderslip">
+         <h1>ORDER SLIP</h1>
+      <p>
+         ID: {{ customer.customer_id}}
+         <br/>
+         Customer: {{ customer.customer_name }}
+         <!-- {{ customer.customer_id}} -->
+      </p>
+      <p>
+         Date:
+         {{ order.order_date }}
+         <ul style="list-style-type: circle;">
+         {% for shake in shakeorders %}
+            <li>{{ shake.recipe.sizes }} oz {{ shake.recipe.recipe_name }}</li>
+            <ul class="shakecustoms">
+            {% for custom in shakecustoms %}
+               <li>{{ custom.quantity }} {{ custom.ingredient_name }}</li>
+            {% endfor %}
+            </ul>
+         {% endfor %}
+         </ul>
+      </p>
+
+      <button class="close-orderslip">
+         <a href="{% url 'orderpreparation:blizzardblast' %}">Close Orderslip</a> 
+      </button>
+      <button>
+         <a href="">View Receipt</a> 
+      </button>
+   </div>
+
+</div>
 {% endblock %}

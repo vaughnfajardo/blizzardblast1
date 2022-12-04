@@ -54,11 +54,11 @@
 
     <!-- customer's order -->
    <div class="orderslip">
-         <h1>ORDER SLIP</h1>
+         <h1>ORDER SLIP {{ order.tx_num }}</h1>
       <p>
-         ID: {{ customer.customer_id}}
+         Customer: {{ customer.customer_name }}  
          <br/>
-         Customer: {{ customer.customer_name }}
+         ID: {{ customer.customer_id}}
          <!-- {{ customer.customer_id}} -->
       </p>
       <p>

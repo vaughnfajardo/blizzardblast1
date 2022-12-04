@@ -22,10 +22,6 @@
 
        <h1>ORDERS</h1>
 
-       <button>
-         <a href="{% url 'orderpreparation:new-order' %}">New Order</a> 
-       </button>
-
        <ul style="list-style-type: circle; line-height: 1.5em;">
        {% for order in orders %}
           <li><a href="/orders/{{ order.tx_num }}/">
@@ -34,6 +30,14 @@
        {% endfor %}
        </ul>
 
+       <button>
+          <a href="{% url 'orderpreparation:addorder' %}">New Order</a> 
+       </button>
+      
+       <p>Recipes and Ingredients:</p>
+       <button onclick="location.href = '../addingredient'">New Ingredient</button><br>
+       <button onclick="location.href = '../addrecipe'">New Recipe</button><br>
+       <button onclick="location.href = '../addrecipeingredient'">Ingredient to Recipe</button><br>
     </div>
 
 </div>

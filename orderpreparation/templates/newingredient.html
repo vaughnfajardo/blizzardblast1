@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block page-title %}New Ingredient{% endblock %}
+
+{% block content %}
+<h1> New Ingredient </h1>
+<hr>
+<form method="POST" action="{% url 'orderpreparation:addingredient' %}" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ ingredient_form.as_p }}
+  <button class="button" type="submit">Submit</button>
+  </form>
+  <button onclick="location.href = '../orderpreparation'">Return to Index</button>
+{% endblock %}

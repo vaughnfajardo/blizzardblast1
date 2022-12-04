@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block page-title %}Add Milkshake to Order{% endblock %}
+
+{% block content %}
+<h1> Add Milkshake to Order </h1>
+<hr>
+<form method="POST" action="{% url 'orderpreparation:addshake' %}" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ shake_form.as_p }}
+  <button class="button" type="submit">Submit</button>
+</form>
+  <button onclick="location.href = '../addorder'">Cancel</button><br>
+  <button onclick="location.href = '../addcustomization'">Add Customization</button><br>
+  <button onclick="location.href = '../orderpreparation'">Done</button><br>
+{% endblock %}

@@ -6,7 +6,12 @@ from .models import *
 class CustomerForm(ModelForm):
     class Meta:
         model = Customer
-        fields = ["customer_name"]
+        fields = '__all__'
+
+class OrderForm(ModelForm):
+    class Meta:
+        model = Orders
+        fields = '__all__'
 
 class MilkshakeForm(ModelForm):
     class Meta:
@@ -14,20 +19,24 @@ class MilkshakeForm(ModelForm):
         fields = '__all__'
 
 
-
 #Forms to create new Recipes, Customizations, Ingredients, etc.
 
-class RecipeForm:
+class RecipeForm(ModelForm):
     class Meta:
         model = Recipe
         fields = '__all__'
 
-class IngredientForm:
+class RecipeIngredientForm(ModelForm):
+     class Meta:
+        model = RecipeIngredient
+        fields = '__all__'
+
+class IngredientForm(ModelForm):
     class Meta:
         model = Ingredient
         fields = '__all__'
 
-class CustomizationForm:
+class CustomizationForm(ModelForm):
     class Meta:
         model = Customization
         fields = '__all__'

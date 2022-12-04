@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views import View
+from django.views.generic.edit import CreateView
 
 from .models import *
 
@@ -15,7 +16,7 @@ def orderslip(request, customer_id):
     customer = Customer.objects.get(customer_id=customer_id)
     order = Orders.objects.get(customer_id=customer.customer_id)
     shake = Milkshake.objects.all().filter(tx_num = order.tx_num)
-    customization = Customization.objects.all().filter(shake_id = shake.shake_id)
+    customization = Customization.objects.all()
 
    #  datadict = {
    #      "customer": customer,
@@ -44,3 +45,9 @@ class OrdersPageView(View):
       return render(request, "blizzardblast.html", {
          "orders": Orders.objects.all()
       })
+
+
+# dummy just for the button
+class OrdersCreateView(CreateView):
+   model = Orders
+   fields = '__all__'

@@ -61,6 +61,46 @@ def newshake(request):
         shake_form = MilkshakeForm()
     return render(request, "newshake.html", {"shake_form": shake_form})
 
+def newingredient(request):
+    if request.method == "POST":
+        ingredient_form = IngredientForm(request.POST, request.FILES)
+        if ingredient_form.is_valid():
+            ingredient_form.save()
+            return redirect("../orderpreparation")
+    else:
+        ingredient_form = IngredientForm()
+    return render(request, "newingredient.html", {"ingredient_form": ingredient_form})
+
+def newrecipe(request):
+    if request.method == "POST":
+        recipe_form = RecipeForm(request.POST, request.FILES)
+        if recipe_form.is_valid():
+            recipe_form.save()
+            return redirect("../orderpreparation")
+    else:
+        recipe_form = RecipeForm()
+    return render(request, "newrecipe.html", {"recipe_form": recipe_form})
+
+def newrecipeingredient(request):
+    if request.method == "POST":
+        recipe_ingredient_form = RecipeIngredientForm(request.POST, request.FILES)
+        if recipe_ingredient_form.is_valid():
+            recipe_ingredient_form.save()
+            return redirect("../orderpreparation")
+    else:
+        recipe_ingredient_form = RecipeIngredientForm()
+    return render(request, "newrecipeingredient.html", {"recipe_ingredient_form": recipe_ingredient_form})
+
+def newcustomization(request):
+    if request.method == "POST":
+        customization_form = CustomizationForm(request.POST, request.FILES)
+        if customization_form.is_valid():
+            customization_form.save()
+            return redirect("../orderpreparation")
+    else:
+        customization_form = CustomizationForm()
+    return render(request, "newcustomization.html", {"customization_form": customization_form})
+
 
 
 

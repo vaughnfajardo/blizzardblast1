@@ -11,4 +11,5 @@ urlpatterns = [
     path("orders/", OrdersPageView.as_view(), name='blizzardblast'),
     path("orders/<int:customer_id>/", orderslip, name='orderslip'),
     path("orders/add/", OrdersCreateView.as_view(), name='new-order'),
+    path("orders/<int:customer_id>/receipt/", receipt, name='receipt'),
 ]

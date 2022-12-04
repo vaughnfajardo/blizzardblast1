@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+
+{% block style %}
+<style>
+   * {
+      background-color: aliceblue;
+   }
+   .container {
+      display: grid;
+      grid-template-columns: 25% 40% 35%;
+   }
+   .shakecustoms {
+      list-style-type: "+  ";
+   }
+   .close-orderslip {
+      margin-right: 1em;
+   }
+</style>
+{% endblock %}
+
+{% block page-title %}Order Slip{% endblock %}
+
+{% block content %}
+<div class="container">
+
+
+    <!-- list of all orders -->
+    <div class="orders">
+
+      <h1>ORDERS</h1>
+
+      <button>
+        <a href="{% url 'orderpreparation:new-order' %}">New Order</a> 
+     </button>
+
+      <ul style="list-style-type: circle; line-height: 1.5em;">
+      {% for order in orders %}
+         <li><a href="/orders/{{ order.tx_num }}/">
+            Order {{ order.tx_num }}: {{ order.customer_id }}'s
+         </a></li>
+      {% endfor %}
+      </ul>
+
+   </div>
+
+
+   <!-- customer's order -->
+   <div class="orderslip">
+      <h1>ORDER SLIP {{ order.tx_num }}</h1>
+      
+      <button class="close-orderslip">
+         <a href="{% url 'orderpreparation:blizzardblast' %}">Close Order</a> 
+      </button>
+      <button>
+         <a href="/orders/{{ order.tx_num }}/receipt/">View Receipt</a> 
+      </button>
+      
+      <p>
+         Customer: {{ customer.customer_name }}  
+         <br/>
+         ID: {{ customer.customer_id}}
+      </p>
+      <p>
+         Date:
+         {{ order.order_date }}
+         <ul style="list-style-type: circle;">
+         {% for shake in shakeorders %}
+            <li>{{ shake.recipe.sizes }} oz {{ shake.recipe.recipe_name }}</li>
+            <ul class="shakecustoms">
+            {% for custom in shakecustoms %}
+               <li>{{ custom.quantity }} {{ custom.ingredient_name }}</li>
+            {% endfor %}
+            </ul>
+         {% endfor %}
+         </ul>
+      </p>
+   </div>
+
+   
+   <!-- receipt -->
+   <div class="receipt">
+      <h1>RECEIPT {{ order.tx_num }}</h1>
+   </div>
+
+
+</div>
+{% endblock %}

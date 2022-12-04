@@ -80,6 +80,28 @@
    <!-- receipt -->
    <div class="receipt">
       <h1>RECEIPT {{ order.tx_num }}</h1>
+      <p>
+         Customer: {{ customer.customer_name }}  
+         <br/>
+         Txn:  {{ order.tx_num }}
+      </p>
+
+
+      <p>
+         Date:
+         {{ order.order_date }}
+         <ul style="list-style-type: circle;">
+         {% for shake in shakeorders %}
+            <li>{{ shake.recipe.sizes }} oz {{ shake.recipe.recipe_name }} -P{{shake.recipe.price}}</li>
+            <ul class="shakecustoms">
+            {% for custom in shakecustoms %}
+               <li>{{ custom.quantity }} {{ custom.ingredient_name }} -P{{custom.ingredient_name.price_per_serving}}</li>
+            {% endfor %}
+            </ul>
+         {% endfor %}
+         </ul>
+      </p>
+
    </div>
 
 

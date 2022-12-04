@@ -124,16 +124,3 @@ class OrdersPageView(View):
       return render(request, "blizzardblast.html", {
          "orders": Orders.objects.all()
       })
-
-# Compiled View (orders & orderslip)
-class OrdersPageView(View):
-   def get(self, request):
-      return render(request, "blizzardblast.html", {
-         "orders": Orders.objects.all()
-      })
-
-
-# dummy just for the button
-class OrdersCreateView(CreateView):
-   model = Orders
-   fields = '__all__'

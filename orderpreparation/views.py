@@ -53,26 +53,19 @@ def newcustomer(request):
 def neworder(request):
     if request.method == "POST":
         order_form = OrderForm(request.POST, request.FILES)
-        customer_form = CustomerForm(request.POST, request.FILES)
-        shake_form = MilkshakeForm(request.POST, request.FILES)
-        if order_form.is_valid() and customer_form.is_valid() and shake_form.is_valid():
+        if order_form.is_valid():
             order_form.save()
-            customer_form.save()
-            shake_form.save()        
-
-            return redirect("../orderpreparation")
+            return redirect("../addshake")
     else:
         order_form = OrderForm()
-        customer_form = CustomerForm()
-        shake_form = MilkshakeForm()
-    return render(request, "neworder.html", {"order_form": order_form, "customer_form":customer_form, "shake_form":shake_form})
+    return render(request, "neworder.html", {"order_form": order_form})
 
 def newshake(request):
     if request.method == "POST":
         shake_form = MilkshakeForm(request.POST, request.FILES)
         if shake_form.is_valid():
             shake_form.save()
-            return redirect("../addorder")
+            return redirect("../addshake")
     else:
         shake_form = MilkshakeForm()
     return render(request, "newshake.html", {"shake_form": shake_form})

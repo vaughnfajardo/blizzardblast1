@@ -5,10 +5,15 @@
 {% block content %}
 <h1> New Order </h1>
 <hr>
+<button onclick="location.href = '../addcustomer'">New Customer</button><br>
 <form method="POST" action="" enctype="multipart/form-data">
     {% csrf_token %}
     {{ order_form.as_p }}
-  <button class="button" type="submit">Submit</button>
+  <button class="button" type="submit" >Submit and proceed to Milkshake Screen</button>
   </form>
-  <button onclick="location.href = '../orderpreparation'">Return to Index</button>
+  <button onclick="location.href = '../orderpreparation/'">Return to Index</button>
+
+  
 {% endblock %}
+
+  

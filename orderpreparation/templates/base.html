@@ -5,8 +5,34 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>{% block page-title %}{% endblock %}</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&display=swap');
+
+      * {
+         box-sizing: border-box;
+         font-family: 'Poppins', Helvetica, sans-serif;
+      }
+      body {
+         margin: 1.5em 2.5em;
+      }
+      header {
+         font-style: italic;
+         color: rgba(127, 255, 212, 0.596);
+         text-shadow: 0.1em 0.1em gray;
+      }
+      header h1 {
+         margin: 0;
+      }
+    </style>
 </head>
 <body>
+    {% block header %}
+    <header>
+      <h1>BLIZZARD BLAST</h1>
+    </header>
+    {% endblock %}
+    {% block style %}
+    {% endblock %}
     {% block content %}
     {% endblock %}
 </body>

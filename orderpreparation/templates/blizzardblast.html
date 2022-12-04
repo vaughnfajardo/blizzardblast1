@@ -5,19 +5,9 @@
    * {
       background-color: aliceblue;
    }
-   /* .orders { grid-area: orders }
-   .orderslip { grid-area: orderslip }
    .container {
       display: grid;
-      grid-template-areas: 'orders orderslip';
-   } */
-   .container {
-      display: flex;
-      /* float: left; */
-   }
-   button > * {
-      text-decoration: none;
-      padding: 0.5em;
+      grid-template-columns: 25% 75%;
    }
 </style>
 {% endblock %}
@@ -32,6 +22,10 @@
 
        <h1>ORDERS</h1>
 
+       <button>
+         <a href="{% url 'orderpreparation:new-order' %}">New Order</a> 
+       </button>
+
        <ul style="list-style-type: circle; line-height: 1.5em;">
        {% for order in orders %}
           <li><a href="/orders/{{ order.tx_num }}/">
@@ -39,10 +33,6 @@
           </a></li>
        {% endfor %}
        </ul>
-
-       <button>
-          <a href="{% url 'orderpreparation:new-order' %}">New Order</a> 
-       </button>
 
     </div>
 

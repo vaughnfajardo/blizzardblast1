@@ -5,19 +5,9 @@
    * {
       background-color: aliceblue;
    }
-   /* .orders { grid-area: orders }
-   .orderslip { grid-area: orderslip }
-   .container {
-      display: grid;
-      grid-template-areas: 'orders orderslip';
-   } */
    .container {
       display: grid;
       grid-template-columns: 25% 75%;
-   }
-   button > * {
-      text-decoration: none;
-      padding: 0.5em;
    }
    .shakecustoms {
       list-style-type: "+  ";
@@ -33,33 +23,42 @@
 {% block content %}
 <div class="container">
 
+
     <!-- list of all orders -->
     <div class="orders">
 
-       <h1>ORDERS</h1>
+      <h1>ORDERS</h1>
 
-       <ul style="list-style-type: circle; line-height: 1.5em;">
-       {% for order in orders %}
-          <li><a href="/orders/{{ order.tx_num }}/">
-             Order {{ order.tx_num }}: {{ order.customer_id }}'s
-          </a></li>
-       {% endfor %}
-       </ul>
+      <button>
+        <a href="{% url 'orderpreparation:new-order' %}">New Order</a> 
+     </button>
 
-       <button>
-          <a href="{% url 'orderpreparation:new-order' %}">New Order</a> 
-       </button>
+      <ul style="list-style-type: circle; line-height: 1.5em;">
+      {% for order in orders %}
+         <li><a href="/orders/{{ order.tx_num }}/">
+            Order {{ order.tx_num }}: {{ order.customer_id }}'s
+         </a></li>
+      {% endfor %}
+      </ul>
 
-    </div>
+   </div>
 
-    <!-- customer's order -->
+
+   <!-- customer's order -->
    <div class="orderslip">
-         <h1>ORDER SLIP {{ order.tx_num }}</h1>
+      <h1>ORDER SLIP {{ order.tx_num }}</h1>
+      
+      <button class="close-orderslip">
+         <a href="{% url 'orderpreparation:blizzardblast' %}">Close Order</a> 
+      </button>
+      <button>
+         <a href="/orders/{{ order.tx_num }}/receipt/">View Receipt</a> 
+      </button>
+      
       <p>
          Customer: {{ customer.customer_name }}  
          <br/>
          ID: {{ customer.customer_id}}
-         <!-- {{ customer.customer_id}} -->
       </p>
       <p>
          Date:
@@ -75,14 +74,8 @@
          {% endfor %}
          </ul>
       </p>
-
-      <button class="close-orderslip">
-         <a href="{% url 'orderpreparation:blizzardblast' %}">Close Orderslip</a> 
-      </button>
-      <button>
-         <a href="">View Receipt</a> 
-      </button>
    </div>
+
 
 </div>
 {% endblock %}

@@ -23,7 +23,7 @@ class Customer(models.Model):
 
 class Customization(models.Model):
     custom_id = models.AutoField(primary_key=True)
-    shake = models.ForeignKey('Milkshake', models.DO_NOTHING)
+    shake_id = models.ForeignKey('Milkshake', models.DO_NOTHING, db_column = 'shake_id', blank=True, null=True)
     ingredient_name = models.ForeignKey('Ingredient', models.DO_NOTHING, db_column='ingredient_name', blank=True, null=True)
     quantity = models.IntegerField(blank=True, null=True)
 
@@ -116,7 +116,7 @@ class Recipe(models.Model):
         db_table = 'recipe'
 
     def __str__(self):
-        return f'{str(self.sizes)} {str(self.recipe_name)}'
+        return f'{str(self.sizes)} oz {str(self.recipe_name)}'
 
 
 class Milkshake(models.Model):
@@ -151,7 +151,12 @@ class RecipeIngredient(models.Model):
 class Staff(models.Model):
     staff_id = models.AutoField(primary_key=True)
     employee = models.ForeignKey(Employee, models.DO_NOTHING, blank=True, null=True)
-    staff_role = models.CharField(max_length=25, blank=True, null=True)
+    ROLES = [
+        ('Preparation','Preparation'),
+        ('Cashier', 'Cashier'),
+        ('Cleaning','Cleaning')
+    ]
+    staff_role = models.CharField(max_length=25, blank=True, choices=ROLES, null=True)
     role_schedule = models.DateField(blank=True, null=True)
 
     class Meta:

@@ -46,7 +46,7 @@
 
    <!-- customer's order -->
    <div class="orderslip">
-      <h1>ORDER SLIP {{ order.tx_num }}</h1>
+      <h1>ORDER SLIP</h1>
       
       <button class="close-orderslip">
          <a href="{% url 'orderpreparation:blizzardblast' %}">Close Order</a> 
@@ -79,7 +79,7 @@
    
    <!-- receipt -->
    <div class="receipt">
-      <h1>RECEIPT {{ order.tx_num }}</h1>
+      <h1>RECEIPT</h1>
       <p>
          Customer: {{ customer.customer_name }}  
          <br/>
@@ -92,10 +92,16 @@
          {{ order.order_date }}
          <ul style="list-style-type: circle;">
          {% for shake in shakeorders %}
-            <li>{{ shake.recipe.sizes }} oz {{ shake.recipe.recipe_name }} -P{{shake.recipe.price}}</li>
+            <li>
+               {{ shake.recipe.sizes }} oz {{ shake.recipe.recipe_name }}
+                -P{{shake.recipe.price}}
+            </li>
             <ul class="shakecustoms">
             {% for custom in shakecustoms %}
-               <li>{{ custom.quantity }} {{ custom.ingredient_name }} -P{{custom.ingredient_name.price_per_serving}}</li>
+               <li>
+                  {{ custom.quantity }} {{ custom.ingredient_name }}
+                   -P{{custom.ingredient_name.price_per_serving}}
+               </li>
             {% endfor %}
             </ul>
          {% endfor %}

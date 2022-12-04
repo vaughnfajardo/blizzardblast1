@@ -24,6 +24,7 @@ def orderslip(request, customer_id):
       "shakecustoms": customization
     })
 
+
 def receipt(request, customer_id):
     customer = Customer.objects.get(customer_id=customer_id)
     order = Orders.objects.get(customer_id=customer.customer_id)

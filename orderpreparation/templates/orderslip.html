@@ -36,7 +36,7 @@
       <ul style="list-style-type: circle; line-height: 1.5em;">
       {% for order in orders %}
          <li><a href="/orders/{{ order.tx_num }}/">
-            Order {{ order.tx_num }}: {{ order.customer_id }}'s
+            Order {{ order.tx_num }}: {{ order.customer_id.customer_name }}'s
          </a></li>
       {% endfor %}
       </ul>
@@ -46,7 +46,7 @@
 
    <!-- customer's order -->
    <div class="orderslip">
-      <h1>ORDER SLIP {{ order.tx_num }}</h1>
+      <h1>ORDER SLIP</h1>
       
       <button class="close-orderslip">
          <a href="{% url 'orderpreparation:blizzardblast' %}">Close Order</a> 

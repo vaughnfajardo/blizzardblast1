@@ -7,7 +7,7 @@
    }
    .container {
       display: grid;
-      grid-template-columns: 25% 75%;
+      grid-template-columns: 25% 40% 35%;
    }
    .shakecustoms {
       list-style-type: "+  ";
@@ -24,19 +24,19 @@
 <div class="container">
 
 
-    <!-- list of all orders -->
-    <div class="orders">
+   <!-- list of all orders -->
+   <div class="orders">
 
-      <h1>ORDERS</h1>
+      <h1>Orders</h1>
 
       <button>
-        <a href="{% url 'orderpreparation:addorder' %}">New Order</a> 
-     </button>
+         <a href="{% url 'orderpreparation:addorder' %}">New Order</a> 
+      </button>
 
       <ul style="list-style-type: circle; line-height: 1.5em;">
       {% for order in orders %}
          <li><a href="/orders/{{ order.tx_num }}/">
-            Order {{ order.tx_num }}: {{ order.customer_id.customer_name }}'s
+            {{ order.customer_id }}'s
          </a></li>
       {% endfor %}
       </ul>
@@ -46,7 +46,7 @@
 
    <!-- customer's order -->
    <div class="orderslip">
-      <h1>ORDER SLIP</h1>
+      <h1>Order Slip</h1>
       
       <button class="close-orderslip">
          <a href="{% url 'orderpreparation:blizzardblast' %}">Close Order</a> 
@@ -65,10 +65,14 @@
          {{ order.order_date }}
          <ul style="list-style-type: circle;">
          {% for shake in shakeorders %}
-            <li>{{ shake.recipe.sizes }} oz {{ shake.recipe.recipe_name }}</li>
+            <li>
+               {{ shake.recipe.sizes }} oz {{ shake.recipe.recipe_name }}</li>
             <ul class="shakecustoms">
             {% for custom in shakecustoms %}
-               <li>{{ custom.quantity }} {{ custom.ingredient_name }}</li>
+               <!-- list customs of the milkshake -->
+               {% if custom.shake_id == shake %}
+                  <li>{{ custom.quantity }} {{ custom.ingredient_name }}</li>
+               {% endif %}
             {% endfor %}
             </ul>
          {% endfor %}

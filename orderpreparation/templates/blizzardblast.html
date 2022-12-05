@@ -7,7 +7,13 @@
    }
    .container {
       display: grid;
-      grid-template-columns: 25% 75%;
+      grid-template-columns: 25% 40% 35%;
+   }
+   .shakecustoms {
+      list-style-type: "+  ";
+   }
+   .close-orderslip {
+      margin-right: 1em;
    }
 </style>
 {% endblock %}
@@ -17,8 +23,9 @@
 {% block content %}
 <div class="container">
 
-    <!-- list of all orders -->
-    <div class="orders">
+
+   <!-- list of all orders -->
+   <div class="orders">
 
        <h1>ORDERS</h1>
 
@@ -27,18 +34,15 @@
       </button>
 
       <ul style="list-style-type: circle; line-height: 1.5em;">
-       {% for order in orders %}
-          <li><a href="/orders/{{ order.tx_num }}/">
-             Order {{ order.tx_num }}: {{ order.customer_id }}'s
-          </a></li>
-       {% endfor %}
-       </ul>
-      
-       <!-- <p>Recipes and Ingredients:</p>
-       <button onclick="location.href = '../addingredient'">New Ingredient</button><br>
-       <button onclick="location.href = '../addrecipe'">New Recipe</button><br>
-       <button onclick="location.href = '../addrecipeingredient'">Ingredient to Recipe</button><br> -->
-    </div>
+      {% for order in orders %}
+         <li><a href="/orders/{{ order.tx_num }}/">
+            {{ order.customer_id }}'s
+         </a></li>
+      {% endfor %}
+      </ul>
+
+   </div>
+
 
 </div>
 {% endblock %}

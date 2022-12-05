@@ -93,24 +93,28 @@
          Date:
          {{ order.order_date }}
          <ul style="list-style-type: circle;">
-         {% for shake in shakeorders %}
-            <li>
-               {{ shake.recipe.sizes }} oz {{ shake.recipe.recipe_name }}
-                -P{{shake.recipe.price}}
-            </li>
-            <ul class="shakecustoms">
-               {% for custom in shakecustoms %}
-               <!-- list customs of the milkshake -->
-               {% if custom.shake_id == shake %}
-                  <li>
-                     {{ custom.quantity }} {{ custom.ingredient_name }}
-                      <!-- multiply price_per_serving by custom.quantity to reflect price -->
-                      -P{% widthratio custom.quantity 1 custom.ingredient_name.price_per_serving %}
-                  </li>
-               {% endif %}
+            {% for shake in shakeorders %}
+               
+               <!-- list milkshake orders -->
+               <li>
+                  {{ shake.recipe.sizes }} oz {{ shake.recipe.recipe_name }}
+                  -P{{shake.recipe.price}}
+               </li>
+               
+               <ul class="shakecustoms">
+                  {% for custom in shakecustoms %}
+                  <!-- list customs of the milkshake -->
+                  {% if custom.shake_id == shake %}
+                     <li>
+                        {{ custom.quantity }} {{ custom.ingredient_name }}
+                        <!-- multiply price_per_serving by custom.quantity to reflect price -->
+                        -P{% widthratio custom.quantity 1 custom.ingredient_name.price_per_serving %}
+                     </li>
+                  {% endif %}
                {% endfor %}
-            </ul>
-         {% endfor %}
+               </ul>
+
+            {% endfor %}
          </ul>
       </p>
    </div>

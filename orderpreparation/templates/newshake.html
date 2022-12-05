@@ -8,9 +8,8 @@
 <form method="POST" action="{% url 'orderpreparation:addshake' %}" enctype="multipart/form-data">
     {% csrf_token %}
     {{ shake_form.as_p }}
-  <button class="button" type="submit">Submit</button>
+  <button class="button" type="submit">Submit and add another</button>
 </form>
-  <button onclick="location.href = '../addorder'">Cancel</button><br>
-  <button onclick="location.href = '../addcustomization'">Add Customization</button><br>
-  <button onclick="location.href = '../orders'">Done</button><br>
+  <button onclick="location.href = '../addcustomization'">Confirm and Add Customization</button><br>
+  <button onclick="location.href = '../orders'">Confirm Order</button><br>
 {% endblock %}

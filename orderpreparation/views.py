@@ -30,14 +30,13 @@ def receipt(request, customer_id):
     customer = Customer.objects.get(customer_id=customer_id)
     order = Orders.objects.get(customer_id=customer.customer_id)
     shake = Milkshake.objects.all().filter(tx_num = order.tx_num)
-    customization = Customization.objects.all()
 
     return render(request, "receipt.html", {
       "customer": customer,
       "order": order,
       "shakeorders": shake,
       "orders": Orders.objects.all(),
-      "shakecustoms": customization
+      "customs": Customization.objects.all()
     })
 
 

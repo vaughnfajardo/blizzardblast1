@@ -92,6 +92,7 @@
       <p>
          Date:
          {{ order.order_date }}
+         {{ shakecustoms }}
          <ul style="list-style-type: circle;">
             {% for shake in shakeorders %}
                
@@ -102,7 +103,7 @@
                </li>
                
                <ul class="shakecustoms">
-                  {% for custom in shakecustoms %}
+                  {% for custom in customs %}
                   <!-- list customs of the milkshake -->
                   {% if custom.shake_id == shake %}
                      <li>

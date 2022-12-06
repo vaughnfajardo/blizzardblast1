@@ -115,6 +115,25 @@ class HomePageView(View):
         customer = Customer.objects.order_by("customer_name")
         return render(request, "index.html", {"customer": customer})
 
+def employeelist(request):
+    cashier = Staff.objects.all().filter(staff_role = 'Cashier')
+    preparation = Staff.objects.all().filter(staff_role = 'Preparation')
+    cleaning = Staff.objects.all().filter(staff_role = 'Cleaning')
+    return render(request, "employeelist.html", {
+        'cashier': cashier,
+        'preparation': preparation,
+        'cleaning': cleaning
+    })
+
+def employeelistweekly(request):
+    week1 = Staff.objects.all().filter(
+        role_schedule__range=["2025-09-01", "2025-09-06"]).order_by('role_schedule')
+    week2 = Staff.objects.all().filter(
+        role_schedule__range=["2025-09-08", "2025-09-13"]).order_by('role_schedule')
+    return render(request, "employeelistweekly.html", {
+        'week1' : week1,
+        'week2': week2,
+        })
 
 # Compiled View (orders & orderslip)
 class OrdersPageView(View):

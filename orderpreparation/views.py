@@ -21,6 +21,7 @@ def orderslip(request, customer_id):
       "order": order,
       "shakeorders": shake,
       "orders": Orders.objects.all(),
+      "shakecustoms": Customization.objects.all()
     })
 
 

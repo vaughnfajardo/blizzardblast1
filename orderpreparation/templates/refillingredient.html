@@ -2,20 +2,42 @@
 
 {% block page-title %}Ingredient Refill{% endblock %}
 
+{% block style %}
+<style>
+   .new {
+      margin-top: 1em;
+   }
+</style>
+{% endblock %}
+
 {% block content %}
-<div style = "position: relative; left:80px; top:30px;">
-    <h1>INGREDIENT REFILLS</h1>
+<div>
+    <h1>Refill Ingredients</h1>
 </div>
-<div style = "position:relative; left:80px; top:35px;">
-    <table id = 'ingredient'>
-        {% for in in ingredient %}
-        <tr>
-            <td>{{ in.ingredient_name }}</td>
-            <td>{{ in.category }}</td>
-            <td>{{ in.quantity_on_hand }}</td>
-            <td>{{ in.price_per_serving }}</td>
-        </tr>
-        {% endfor %}
+<div>
+    <table id='ingredient'>
+        {% if ingredient %}
+            {% for in in ingredient %}
+            <tr>
+                  <td>{{ in.ingredient_name }}</td>
+                  <!-- <td>{{ in.category }}</td> -->
+                  <td>- {{ in.quantity_on_hand }} servings left</td>
+                  <!-- <td>{{ in.price_per_serving }}</td> -->
+            </tr>
+            {% endfor %}
+        {% else %}
+            No ingredient needs refilling
+        {% endif %}
     </table>
+    <br>
+    <button>
+      <a href="/orders">Return</a>
+    </button>
+    <br>
+    <br>
+    <hr/>
+    <button class="new"><a href="/addingredient">New Ingredient</a></button>
+    <button class="new"><a href="/addrecipe">New Recipe</a></button>
+    <button class="new"><a href="/addrecipeingredient">New Recipe Ingredient</a></button>
 </div>
 {% endblock %}

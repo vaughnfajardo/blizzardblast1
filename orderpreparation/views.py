@@ -122,15 +122,23 @@ def employeelist(request):
     return render(request, "employeelist.html", {
         'cashier': cashier,
         'preparation': preparation,
-        'cleaning': cleaning
+        'cleaning': cleaning,
     })
 
 def employeelistweekly(request):
+    cashier = Staff.objects.all().filter(staff_role = 'Cashier')
+    preparation = Staff.objects.all().filter(staff_role = 'Preparation')
+    cleaning = Staff.objects.all().filter(staff_role = 'Cleaning')
+
     week1 = Staff.objects.all().filter(
         role_schedule__range=["2025-09-01", "2025-09-06"]).order_by('role_schedule')
     week2 = Staff.objects.all().filter(
         role_schedule__range=["2025-09-08", "2025-09-13"]).order_by('role_schedule')
     return render(request, "employeelistweekly.html", {
+        'cashier': cashier,
+        'preparation': preparation,
+        'cleaning': cleaning,
+
         'week1' : week1,
         'week2': week2,
         })

@@ -2,45 +2,53 @@
 
 {% block page-title %}Employee List by Position{% endblock %}
 
+{% block style %}
+<style>
+   .container {
+      display: grid;
+      grid-template-columns: 30% 70%;
+   }
+   ul {
+      list-style-type: circle;
+   }
+   h2 {
+      font-size: 1em;
+      font-weight: bold;
+   }
+</style>
+{% endblock %}
+
 {% block content %}
-<div style = "position: relative; left:80px; top:30px;">
-    <h1>EMPLOYEE LIST BY POSITION</h1>
-</div>
-<div style = "position:relative; left:80px; top:35px;">
+<div class="container">
 
-    <p>Cashier</p>
-    <table id = 'cashier'>
+
+   <!-- /employeelist -->
+   <div>
+      <h1>Employee List</h1>
+      <button class="new"><a href="/employeelist/weekly">View Schedule</a></button>
+  
+      <h2>Cashier</h2>
+      <ul>
         {% for cashier in cashier %}
-        <tr>
-            <td>{{ cashier.staff_id }}</td>
-            <td>{{ cashier.employee }}</td>
-            <td>{{ cashier.role_schedule }}</td>
-        </tr>
+        <li>{{ cashier.employee.employee_name }}</li>
         {% endfor %}
-    </table>
-
-    <p>Preparation</p>
-    <table id = 'preparation'>
+      </ul>
+  
+      <h2>Preparation</h2>
+      <ul>
         {% for preparation in preparation %}
-        <tr>
-            <td>{{ preparation.staff_id }}</td>
-            <td>{{ preparation.employee }}</td>
-            <td>{{ preparation.role_schedule }}</td>
-        </tr>
+        <li>{{ preparation.employee.employee_name }}</li>
         {% endfor %}
-    </table>
-
-    <p>Cleaning</p>
-    <table id = 'cleaning'>
+      </ul>
+  
+      <h2>Cleaning</h2>
+      <ul>
         {% for cleaning in cleaning %}
-        <tr>
-            <td>{{ cleaning.staff_id }}</td>
-            <td>{{ cleaning.employee }}</td>
-            <td>{{ cleaning.role_schedule }}</td>
-        </tr>
+        <li>{{ cleaning.employee.employee_name }}</li>
         {% endfor %}
-    </table>
-
+      </ul>
+   </div>
+  
 
 </div>
 {% endblock %}

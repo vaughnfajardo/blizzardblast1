@@ -2,38 +2,93 @@
 
 {% block page-title %}Employee List by Week{% endblock %}
 
+{% block style %}
+<style>
+   .container {
+      display: grid;
+      grid-template-columns: 30% 70%;
+   }
+   ul {
+      list-style-type: circle;
+   }
+   h2 {
+      font-size: 1em;
+      font-weight: bold;
+   }
+   table, tr, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+   }
+   td {
+      padding: 0.5em 0.8em;
+      /* width: 7em; */
+   }
+</style>
+{% endblock %}
+
 {% block content %}
-<div style = "position: relative; left:80px; top:30px;">
-    <h1>EMPLOYEE ASSIGNMENTS</h1>
-</div>
-<div style = "position:relative; left:80px; top:35px;">
+<div class="container">
 
-    <p>Week 1</p>
-    <table id = 'week1'>
-        {% for staff in week1 %}
-        <tr>
-            <td>{{ staff.role_schedule }} | </td>
-            <td>{{ staff.staff_id }}</td>
-            <td>{{ staff.employee }}</td>
+
+   <!-- /employeelist -->
+   <div>
+      <h1>Employee List</h1>
+      <button class="new"><a href="/employeelist">Close</a></button>
+  
+      <h2>Cashier</h2>
+      <ul>
+        {% for cashier in cashier %}
+        <li>{{ cashier.employee.employee_name }}</li>
+        {% endfor %}
+      </ul>
+  
+      <h2>Preparation</h2>
+      <ul>
+        {% for preparation in preparation %}
+        <li>{{ preparation.employee.employee_name }}</li>
+        {% endfor %}
+      </ul>
+  
+      <h2>Cleaning</h2>
+      <ul>
+        {% for cleaning in cleaning %}
+        <li>{{ cleaning.employee.employee_name }}</li>
+        {% endfor %}
+      </ul>
+   </div>
+
+
+   <!-- /employeelist/weekly -->
+   <div>
+      <h1>Employee Schedule</h1>
+
+      <p>Week 1</p>
+      <table id = 'week1'>
+         {% for staff in week1 %}
+         <tr>
+            <td>{{ staff.role_schedule|date:"M d" }}</td>
+            <!-- <td>{{ staff.staff_id }}</td> -->
+            <td>{{ staff.employee.employee_name }}</td>
             <td>{{ staff.staff_role }}</td>
 
-        </tr>
-        {% endfor %}
-    </table>
+         </tr>
+         {% endfor %}
+      </table>
 
-    <p>Week 2</p>
-    <table id = 'week2'>
-        {% for staff in week2 %}
-        <tr>
-            <td>{{ staff.role_schedule }} | </td>
-            <td>{{ staff.staff_id }}</td>
-            <td>{{ staff.employee }}</td>
-            <td>{{ staff.staff_role }}</td>
+      <p>Week 2</p>
+      <table id = 'week2'>
+         {% for staff in week2 %}
+         <tr>
+         <td>{{ staff.role_schedule|date:"M d" }}</td>
+         <!-- <td>{{ staff.staff_id }}</td> -->
+         <td>{{ staff.employee.employee_name }}</td>
+         <td>{{ staff.staff_role }}</td>
 
-        </tr>
-        {% endfor %}
-    </table>
-
-
+         </tr>
+         {% endfor %}
+      </table>
+   </div>
+  
+  
 </div>
 {% endblock %}

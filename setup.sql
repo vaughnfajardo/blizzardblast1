@@ -25,9 +25,9 @@ CREATE TABLE orders (
    tx_num            SERIAL NOT NULL PRIMARY KEY,
    order_date        DATE,
    customer_id       INT,
-   employee          VARCHAR(25) NOT NULL,
+   employee_id       INT,
    FOREIGN KEY(customer_id) REFERENCES customer(customer_id)
-   FOREIGN KEY(employee) REFERENCES employee(employee_name)
+   FOREIGN KEY(employee_id) REFERENCES employee(employee_id)
 );
 
 
@@ -35,10 +35,10 @@ CREATE TABLE milkshake (
    shake_id          SERIAL NOT NULL PRIMARY KEY,
    recipe_id         INT, 
    tx_num            INT,
-   employee          VARCHAR(25) NOT NULL,
+   employee_id       INT,
    FOREIGN KEY(recipe_id) REFERENCES recipe(recipe_id),
    FOREIGN KEY(tx_num) REFERENCES orders(tx_num)
-   FOREIGN KEY(employee) REFERENCES employee(employee_name)
+   FOREIGN KEY(employee_id) REFERENCES employee(employee_id)
 );
 
 

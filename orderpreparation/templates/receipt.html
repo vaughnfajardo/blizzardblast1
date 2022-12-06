@@ -90,11 +90,7 @@
          Txn:  {{ order.tx_num }}
       </p>
       <p>
-         Date:
-         {{ order.order_date }}
-         {{ shakecustoms }}
-         | Cashier:
-         {{ order.employee }}
+         Date: {{ order.order_date }}
          <ul style="list-style-type: circle;">
             {% for shake in shakeorders %}
                
@@ -119,6 +115,7 @@
 
             {% endfor %}
          </ul>
+         Cashier: {{ order.employee.employee_name }}
       </p>
    </div>
 

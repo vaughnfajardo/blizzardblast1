@@ -45,7 +45,7 @@ class Employee(models.Model):
         db_table = 'employee'
 
     def __str__(self):
-        return str(self.employee_name)
+        return f'{str(self.employee_name)} {str(self.employee_id)}'
         
 
 
@@ -91,6 +91,7 @@ class Orders(models.Model):
     tx_num = models.AutoField(primary_key=True)
     order_date = models.DateField(blank=True, null=True)
     customer_id = models.ForeignKey(Customer, models.DO_NOTHING, db_column='customer_id', blank=True, null=True)
+    employee = models.ForeignKey(Employee, models.DO_NOTHING, blank=True, null=True)
 
 
     class Meta:
@@ -123,6 +124,7 @@ class Milkshake(models.Model):
     shake_id = models.AutoField(primary_key=True)
     recipe = models.ForeignKey(Recipe, models.DO_NOTHING, blank=True, null=True)
     tx_num = models.ForeignKey('Orders', models.DO_NOTHING, db_column = 'tx_num', blank=True, null=True)
+    employee = models.ForeignKey(Employee, models.DO_NOTHING, blank=True, null=True)
 
     class Meta:
         managed = False

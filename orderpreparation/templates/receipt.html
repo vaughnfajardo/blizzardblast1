@@ -68,7 +68,7 @@
             <li>
                {{ shake.recipe.sizes }} oz {{ shake.recipe.recipe_name }}</li>
             <ul class="shakecustoms">
-            {% for custom in shakecustoms %}
+            {% for custom in customs %}
                <!-- list customs of the milkshake -->
                {% if custom.shake_id == shake %}
                   <li>{{ custom.quantity }} {{ custom.ingredient_name }}</li>

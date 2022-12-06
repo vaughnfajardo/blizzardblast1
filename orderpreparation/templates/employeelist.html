@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block page-title %}Employee List by Position{% endblock %}
+
+{% block content %}
+<div style = "position: relative; left:80px; top:30px;">
+    <h1>EMPLOYEE LIST BY POSITION</h1>
+</div>
+<div style = "position:relative; left:80px; top:35px;">
+
+    <p>Cashier</p>
+    <table id = 'cashier'>
+        {% for cashier in cashier %}
+        <tr>
+            <td>{{ cashier.staff_id }}</td>
+            <td>{{ cashier.employee }}</td>
+            <td>{{ cashier.role_schedule }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <p>Preparation</p>
+    <table id = 'preparation'>
+        {% for preparation in preparation %}
+        <tr>
+            <td>{{ preparation.staff_id }}</td>
+            <td>{{ preparation.employee }}</td>
+            <td>{{ preparation.role_schedule }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <p>Cleaning</p>
+    <table id = 'cleaning'>
+        {% for cleaning in cleaning %}
+        <tr>
+            <td>{{ cleaning.staff_id }}</td>
+            <td>{{ cleaning.employee }}</td>
+            <td>{{ cleaning.role_schedule }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+
+</div>
+{% endblock %}

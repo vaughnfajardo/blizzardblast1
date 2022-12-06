@@ -21,4 +21,7 @@ urlpatterns = [
     path("orders/<int:customer_id>/receipt/", receipt, name='receipt'),
 
     path("orders/add/", neworder, name='new-order'),
+
+    path("employeelist/", employeelist, name='employeelist'),
+    path("employeelist/weekly/", employeelistweekly, name='employeelistweekly'),
 ]

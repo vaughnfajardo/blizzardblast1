@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block page-title %}Employee List by Week{% endblock %}
+
+{% block content %}
+<div style = "position: relative; left:80px; top:30px;">
+    <h1>EMPLOYEE ASSIGNMENTS</h1>
+</div>
+<div style = "position:relative; left:80px; top:35px;">
+
+    <p>Week 1</p>
+    <table id = 'week1'>
+        {% for staff in week1 %}
+        <tr>
+            <td>{{ staff.role_schedule }} | </td>
+            <td>{{ staff.staff_id }}</td>
+            <td>{{ staff.employee }}</td>
+            <td>{{ staff.staff_role }}</td>
+
+        </tr>
+        {% endfor %}
+    </table>
+
+    <p>Week 2</p>
+    <table id = 'week2'>
+        {% for staff in week2 %}
+        <tr>
+            <td>{{ staff.role_schedule }} | </td>
+            <td>{{ staff.staff_id }}</td>
+            <td>{{ staff.employee }}</td>
+            <td>{{ staff.staff_role }}</td>
+
+        </tr>
+        {% endfor %}
+    </table>
+
+
+</div>
+{% endblock %}
